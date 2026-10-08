@@ -1,130 +1,141 @@
-1995-2021 UNITED STATES HONEY PRODUCTION, SUPPLY AND DEMAND ANALYSIS
+# 1995-2021 UNITED STATES HONEY PRODUCTION, SUPPLY AND DEMAND ANALYSIS
 
-Author: Arnold Atchoe.
+## Author: Arnold Atchoe.
 
-Date: 10/7/2026
+## Date: 10/7/2026
 
-Tableau Public Link: https://public.tableau.com/app/profile/arnold.atchoe/viz/ArnoldAtchoe_HoneyProduction/1995-2021U_SHoneyProduction?publish=yes
+## Tableau Public Link: https://public.tableau.com/app/profile/arnold.atchoe/viz/ArnoldAtchoe_HoneyProduction/1995-2021U_SHoneyProduction?publish=yes
 
-GitHub Link: https://github.com/kwameape123/U.S.-Honey-Production
+## GitHub Link: https://github.com/kwameape123/U.S.-Honey-Production
 
-Section 1. Introduction
+## Section 1. Introduction
 According to Wikipedia, the United States is among the top 10 countries in the world when it comes to honey production. Honey is a natural product made by bees. Bees visit flowers to collect nectar and bring it back to their hive to produce honey. Honeybees use honey as their primary source of energy and their instinct is to make more than their colony needs. Beekeepers harvest the excess and bottle it for consumption. The goal of this project is to analyze honey production, supply and demand in the United States from 1995 to 2021. This study specifically summarizes national Key Performance Indicators (KPIs) for honey production and observes trends of independent variables (KPIs) and how they influence the trend of dependent variables (KPIs) over time at the national level and for the top 10 producing states. The project also includes a dashboard to allow users to analyze honey production and related trends at the regional and state level. Associate visualizations, dashboards and stories can be access at https://public.tableau.com/app/profile/arnold.atchoe/viz/ArnoldAtchoe_HoneyProduction/1995-2021U_SHoneyProduction?publish=yes. Source files used in this project can be accessed at https://github.com/kwameape123/U.S.-Honey-Production.
 
-Section 2. Data Description
+## Section 2. Data Description
 US Honey Production 1995-2021 is an agricultural dataset, and it was obtained from Kaggle at https://www.kaggle.com/datasets/mohitpoudel/us-honey-production-19952021/data as a Comma Separated Values (CSV) file. This Kaggle dataset was curated using yearly honey production data reported by the National Agricultural Statistics Service of the United States Department of Agriculture. The original dataset in its raw form obtained from Kaggle has 1116 rows (1 header row and 1115 observations) and 9 columns. Description of original dataset columns are as follows:
 
-Index number: Unique Identification number for each observation in the dataset.
-State: Name of State.
-Colonies_number: Number of honey producing colonies. Honey producing colonies are the maximum number of colonies in the year. It is possible to harvest honey from colonies that did not survive the entire year.
-Yield_per_colony: Units of honey produced per colony in pounds.
-Production: Total Production is the number of colonies multiplied by yield per colony.
-Stocks: Units of honey held in stock at the end of each year in pounds.
-Average_price: Refers to average price per pound based on expanded sales. Unit is dollars.
-Value_of_production: Value of production is obtained by multiplying production and average_price. Unit is in dollars.
-Year: Year of which data is tabulated.
-Section 3. Data Cleaning Strategies
+  - **Index number**: Unique Identification number for each observation in the dataset.
+  - **State**: Name of State.
+  - **Colonies_number**: Number of honey producing colonies. Honey producing colonies are the maximum number of colonies in the year. It is possible to harvest honey from colonies that did not survive the entire year.
+  - **Yield_per_colony**: Units of honey produced per colony in pounds.
+  - **Production**: Total Production is the number of colonies multiplied by yield per colony.
+  - **Stocks**: Units of honey held in stock at the end of each year in pounds.
+  - **Average_price**: Refers to average price per pound based on expanded sales. Unit is dollars.
+  - **Value_of_production**: Value of production is obtained by multiplying production and average_price. Unit is in dollars.
+  - **Year**: Year of which data is tabulated.
+  
+## Section 3. Data Cleaning Strategies
 The U.S honey production dataset for 1995 to 2021 in its original form from Kaggle had some calculation errors and inconsistencies as follows:
-Production column which is a product of colonies_numbers and yield_per_colony contained wrong values.
-Average price was recorded in cents for 1995 to 2017 and in dollars for 2018 to 2021.
-Because value_of_production depends on average prices, the values for value_of_production were incorrect.
+  - Production column which is a product of colonies_numbers and yield_per_colony contained wrong values.
+  - Average price was recorded in cents for 1995 to 2017 and in dollars for 2018 to 2021.
+  - Because value_of_production depends on average prices, the values for value_of_production were incorrect.
 To correct the problems listed above, the following measures were taken with Microsoft Excel:
-The original production column was deleted and a new production column generated by multiplying colonies_numbers by yield_per_colony. Results were copied and pasted as values to get rid of formulas in cells.
-From 1995 to 2017 prices were converted to dollars by dividing value in cents by 100 while 2018 to 2021 values remained the same. Results were copied and pasted as values to get rid of formulas in cells.
-The original value_of_production column was deleted, and a new value_of_production column was generated by multiplying production by average_prices. Results were copied and pasted as values to get rid of formulas in cells.
-As part of the data cleaning exercise, a value_of_stocks column was generated by multiplying the stocks column by the average_price column.
-As part of the data cleaning process. A revenue column was generated by finding the difference between value_of_production and value_of_stocks.
-Section 4. Clean Dataset
+  - The original production column was deleted and a new production column generated by multiplying colonies_numbers by yield_per_colony. Results were copied and pasted as values to get rid of formulas in cells.
+  - From 1995 to 2017 prices were converted to dollars by dividing value in cents by 100 while 2018 to 2021 values remained the same. Results were copied and pasted as values to get rid of formulas in cells.
+  - The original value_of_production column was deleted, and a new value_of_production column was generated by multiplying production by average_prices. Results were copied and pasted as values to get rid of formulas in cells.
+  - As part of the data cleaning exercise, a value_of_stocks column was generated by multiplying the stocks column by the average_price column.
+  - As part of the data cleaning process. A revenue column was generated by finding the difference between value_of_production and value_of_stocks.
+  
+## Section 4. Clean Dataset
 Performing data cleaning on the original dataset from Kaggle resulted in a dataset with the following 11 columns and same number of rows:
 
-Index number: Unique Identification number for each observation in the dataset.
-State: Name of State.
-Colonies_number: Number of honey producing colonies. Honey producing colonies are the maximum number of colonies in the year. It is possible to harvest honey from colonies that did not survive the entire year.
-Yield_per_colony: Units of honey produced per colony in pounds.
-Production: Total Production is number of colonies multiplied by yield per colony.
-Stocks: Units of honey held in stock at the end of each year in pounds.
-Average_price: Refers to average price per pound based on expanded sales. Unit is dollars.
-Value_of_production: Value of production is obtained by multiplying production and average_price. Unit is dollars.
-Year: Year of which data is tabulated.
-Value_of_stocks: This column represents the product of average_price and stocks.
-Revenue: This column represents the difference between value_of_production and value_of_stocks.
+  - **Index number**: Unique Identification number for each observation in the dataset.
+  - **State**: Name of State.
+  - **Colonies_number**: Number of honey producing colonies. Honey producing colonies are the maximum number of colonies in the year. It is possible to harvest honey from colonies that did not survive the entire year.
+  - **Yield_per_colony**: Units of honey produced per colony in pounds.
+  - **Production**: Total Production is number of colonies multiplied by yield per colony.
+  - **Stocks**: Units of honey held in stock at the end of each year in pounds.
+  - **Average_price**: Refers to average price per pound based on expanded sales. Unit is dollars.
+  - **Value_of_production**: Value of production is obtained by multiplying production and average_price. Unit is dollars.
+  - **Year**: Year of which data is tabulated.
+  - **Value_of_stocks**: This column represents the product of average_price and stocks.
+  - **Revenue**: This column represents the difference between value_of_production and value_of_stocks.
+  
 To facilitate analysis and visualization for this project, columns, summary tables and values were generated in Tableau. These columns, summary tables and values include:
 
-Regions: Represent the administrative regions of the National Agricultural Statistics Service of the United States Department of Agriculture.
-Average State Production: This value represents the average quantity of honey in pounds produced state-wise.
-Colonies_number_1995-2021: This summary table presents the number of colonies for each year from 1995 to 2021. It was useful in calculating average number of colonies nationally.
-Demand: This summary table presents the units of honey in pounds sold for each year from 1995 to 2021. It was useful in visualizing the trend of demand.
-State Production Sum: This summary table presents the units of honey produced in pounds for each state for 1995 to 2021. It was useful in determining or calculating average state production.
-Time Production Sum: This summary table presents the units of honey produced in pounds for each year from 1995 to 2021. It was useful in establishing the relationship between demand and production.
-Yield_per_colony_1995-2021: This summary table presents the average yield per colony for each year from 1995 to 2021. It was useful in observing average yield per colony over the years from 1995 to 2021.
-First 10 rows of the clean dataset.
+  - **Regions**: Represent the administrative regions of the National Agricultural Statistics Service of the United States Department of Agriculture.
+  - **Average State Production**: This value represents the average quantity of honey in pounds produced state-wise.
+  - **Colonies_number_1995-2021**: This summary table presents the number of colonies for each year from 1995 to 2021. It was useful in calculating average number of colonies nationally.
+  - **Demand**: This summary table presents the units of honey in pounds sold for each year from 1995 to 2021. It was useful in visualizing the trend of demand.
+  - **State Production Sum**: This summary table presents the units of honey produced in pounds for each state for 1995 to 2021. It was useful in determining or calculating average state production.
+  - **Time Production Sum**: This summary table presents the units of honey produced in pounds for each year from 1995 to 2021. It was useful in establishing the relationship between demand and production.
+  - **Yield_per_colony_1995-2021**: This summary table presents the average yield per colony for each year from 1995 to 2021. It was useful in observing average yield per colony over the years from 1995 to 2021.
+  ![First 10 rows of the clean dataset.](image1.png)
+    
 
-Section 5. Visualization Tool
+## Section 5. Visualization Tool
 Tableau was used to create various visualizations, a dashboard, and a data story. It was selected as the visualization tool because it provides an easy-to-use interface and intuitive menu options that make it simple to build visualizations, dashboards, and data stories.
 
-Section 6. Visualization and Stories
-Section 6.1 United States Honey Production Key Performance Indicators
-Goal: Determine what the average number of colonies, the average yield per colony, the units (in pounds) and value (in dollars) of honey produced, units (in pounds) and value (in dollars) of honey in stock at the end of the year and revenue for the United States over the period 1995 to 2021.
+## Section 6. Visualization and Stories
+### Section 6.1 United States Honey Production Key Performance Indicators
+**Goal**: Determine what the average number of colonies, the average yield per colony, the units (in pounds) and value (in dollars) of honey produced, units (in pounds) and value (in dollars) of honey in stock at the end of the year and revenue for the United States over the period 1995 to 2021.
 
-Approach: A summary table was selected as the visualization of choice, even though it is not a traditional chart. This format allows the audience to quickly identify and interpret the key indicators of the U.S. honey market from 1995 to 2021.
+**Approach**: A summary table was selected as the visualization of choice, even though it is not a traditional chart. This format allows the audience to quickly identify and interpret the key indicators of the U.S. honey market from 1995 to 2021.
 
-Chart and Story:
-
-
-
-
-Section 6.2.1 Analysis of Dollar Value of Honey Production and its Related Variables from 1995 to 2021.
-Goal: To determine how number of bee colonies, average yield per colony and average prices affect production and the value of production for the United States over the period 1995 to 2021.
-
-Approach: Multiple panel line charts were presented side by side to visualize and analyze the changes in independent variables namely number of colonies, average yield per colony and average prices to determine how they affected the changes in dependent variables production and value of production.
-
-Chart and Story:
-
-Section 6.2.2 Analysis of Honey Revenue and its Related Variables from 1995 to 2021.
-Goal: To determine how stocks withheld, production and average prices affect revenue for the United States over the period 1995 to 2021.
-
-Approach: Multiple panel line charts were presented side by side to visualize and analyze the changes in variables stocks on hand, production and average prices to determine how they affected the changes in revenue.
-
-Chart and Story:
-
-Section 6.3 Honey Production Per State.
-Goal: To determine how many units of honey each honey producing state produced and how their production level compares to the average production level for 1995 to 2021.
-
-Approach: A column chart was generated to show production levels for each state for 1995-2021. A reference line representing average production levels for 1995 to 2021 was incorporated into the column chart to drive a benchmark chart.
-
-Chart and Story:
+**Chart and Story**:
+![viz2](image2.png)
 
 
 
-Section 6.4 Top 10 Honey Producing States
-Goal: To determine how many units of honey each of the top 10 honey producing state produced and how their production level compares to the average production level for 1995 to 2021.
+### Section 6.2.1 Analysis of Dollar Value of Honey Production and its Related Variables from 1995 to 2021.
+**Goal**: To determine how number of bee colonies, average yield per colony and average prices affect production and the value of production for the United States over the period 1995 to 2021.
 
-Approach: A column chart was generated to show production levels for each of the top 10 states for 1995-2021. A reference line representing average production levels for 1995 to 2021 was incorporated into the column chart to drive a benchmark chart.
+**Approach**: Multiple panel line charts were presented side by side to visualize and analyze the changes in independent variables namely number of colonies, average yield per colony and average prices to determine how they affected the changes in dependent variables production and value of production.
 
-Chart and Story:
+**Chart and Story**:
+![viz3](image3.png)
 
-Section 6.5 Analysis of Honey's Value of Production and its Related Variables of Top 10 Producing States from 1995 to 2021.
-Goal: To determine how number of bee colonies, average yield per colony and average prices affect production and the value of production for the top 10 honey producers over the period 1995 to 2021.
+### Section 6.2.2 Analysis of Honey Revenue and its Related Variables from 1995 to 2021.
+**Goal**: To determine how stocks withheld, production and average prices affect revenue for the United States over the period 1995 to 2021.
 
-Approach: Multiple panel line charts were presented side by side to visualize and analyze the changes in independent variables namely number of colonies, average yield per colony and average prices to determine how they affected the changes in dependent variables production and value of production.
+**Approach**: Multiple panel line charts were presented side by side to visualize and analyze the changes in variables stocks on hand, production and average prices to determine how they affected the changes in revenue.
 
-Chart and Story: 
+**Chart and Story**:
+![viz4](image4.png)
 
-Section 6.6 Analysis of Honey Revenue and its Related Variables of Top 10 Producing States from 1995 to 2021.
-Goal: To determine how stocks withheld, production and average prices affect revenue for the top 10 honey producing states over the period 1995 to 2021.
+### Section 6.3 Honey Production Per State.
+**Goal**: To determine how many units of honey each honey producing state produced and how their production level compares to the average production level for 1995 to 2021.
 
-Approach: Multiple panel line charts were presented side by side to visualize and analyze the changes in variables stocks on hand, production and average prices to determine how they affected the changes in revenue.
+**Approach**: A column chart was generated to show production levels for each state for 1995-2021. A reference line representing average production levels for 1995 to 2021 was incorporated into the column chart to drive a benchmark chart.
 
-Chart and Story: 
+**Chart and Story**:
+![viz5](image5.png)
 
-Section 6.7 Relationship between Demand and Units Produced for Top 10 Honey Producers.
-Goal: To understand the relationship between demand and production for the top 10 honey producing states.
 
-Approach: First a scatter plot was developed to visualize the relationship between production and demand of the top 10 honey producers. Subsequently a trend was added to show the associated mathematical relationship.
+### Section 6.4 Top 10 Honey Producing States
+**Goal**: To determine how many units of honey each of the top 10 honey producing state produced and how their production level compares to the average production level for 1995 to 2021.
 
-Chart and Story: 
+**Approach**: A column chart was generated to show production levels for each of the top 10 states for 1995-2021. A reference line representing average production levels for 1995 to 2021 was incorporated into the column chart to drive a benchmark chart.
 
-Section 7. Conclusions
+**Chart and Story**:
+![viz6](image6.png)
+
+### Section 6.5 Analysis of Honey's Value of Production and its Related Variables of Top 10 Producing States from 1995 to 2021.
+**Goal**: To determine how number of bee colonies, average yield per colony and average prices affect production and the value of production for the top 10 honey producers over the period 1995 to 2021.
+
+**Approach**: Multiple panel line charts were presented side by side to visualize and analyze the changes in independent variables namely number of colonies, average yield per colony and average prices to determine how they affected the changes in dependent variables production and value of production.
+
+**Chart and Story**: 
+![viz7](image7.png)
+
+### Section 6.6 Analysis of Honey Revenue and its Related Variables of Top 10 Producing States from 1995 to 2021.
+**Goal**: To determine how stocks withheld, production and average prices affect revenue for the top 10 honey producing states over the period 1995 to 2021.
+
+**Approach**: Multiple panel line charts were presented side by side to visualize and analyze the changes in variables stocks on hand, production and average prices to determine how they affected the changes in revenue.
+
+**Chart and Story**: 
+![viz8](image8.png)
+
+### Section 6.7 Relationship between Demand and Units Produced for Top 10 Honey Producers.
+**Goal**: To understand the relationship between demand and production for the top 10 honey producing states.
+
+**Approach**: First a scatter plot was developed to visualize the relationship between production and demand of the top 10 honey producers. Subsequently a trend was added to show the associated mathematical relationship.
+
+**Chart and Story**: 
+![viz9](image9.png)
+
+## Section 7. Conclusions
+![viz10](image10.png)
 The analysis of honey production in the United States from 1995 to 2021 shows that the honey industry experienced a general decline in production, while the value of production increased over the same period. Production declined mainly due to the reduction in average yield per colony, while the number of bee colonies remained relatively stable and, in some cases, increased. Stocks maintained at the end of the year also followed a downward trend, especially after 2000. At the same time, average honey prices generally trended upward, making price increases a major factor influencing the growth in the value of production and revenue.
 
 The top 10 honey-producing states followed a production trend like the national trend, with production declining mainly due to the reduction in average yield per colony despite the number of colonies trending upward. States in the Midwest-Plains region made up about half of the top 10 producers and remained an important region for the honey industry because they consistently produced significantly more honey than other regions. The relationship between production and demand also shows that demand had an important influence on production, accounting for approximately 59.6% of the changes in production among the top 10 honey-producing states.
